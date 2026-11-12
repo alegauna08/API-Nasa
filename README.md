@@ -54,3 +54,35 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+## Backend API
+
+Run the backend in one terminal:
+
+```bash
+npm run backend
+```
+
+It reads `VITE_API_URL` from `src/backend/.env` and serves the upstream NASA response at `http://localhost:3001/api/nasa`. The API key, if configured, remains on the backend and is not sent to the app.
+
+Run Expo in a second terminal:
+
+```bash
+npm start
+```
+
+For Expo Go on a phone, the app uses the Expo development server's host address
+to reach the backend automatically when both devices are on the same local
+network. If your network setup requires a different address, copy
+`.env.example` to `.env`, replace the example IP with your computer's local
+network IP, and restart Expo:
+
+```env
+EXPO_PUBLIC_BACKEND_URL=http://YOUR_COMPUTER_IP:3001
+```
+
+This `.env` file must be in the project root, beside `package.json`. Expo does
+not read `EXPO_PUBLIC_BACKEND_URL` from `src/backend/.env`; that file is only
+loaded by the backend.
+
+Keep the phone and computer on the same Wi-Fi network. An Expo tunnel only exposes the Expo development server; the backend must also be reachable from the phone.
